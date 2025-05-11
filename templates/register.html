@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card" style="max-width: 500px; margin: 50px auto;">
+        <h1 style="text-align: center; margin-bottom: 20px;">Créer un compte</h1>
+        
+        <form method="POST">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Nom d'utilisateur</label>
+                <input type="text" name="username" required>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Email</label>
+                <input type="email" name="email" required>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Mot de passe</label>
+                <input type="password" name="password" required>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px;">Confirmer le mot de passe</label>
+                <input type="password" name="confirm_password" required>
+            </div>
+            
+            <button type="submit" class="button button-primary" style="width: 100%;">
+                S'inscrire
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

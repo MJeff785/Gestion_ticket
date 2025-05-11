@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h1 style="margin-bottom: 20px;">Liste des Tickets</h1>
+        
+        <div style="display: grid; gap: 20px;">
+            {% for ticket in tickets %}
+            <div class="card" style="padding: 15px; position: relative;">
+                <h2 style="margin-top: 0; color: var(--primary);">{{ ticket.titre }}</h2>
+                <p>{{ ticket.description }}</p>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <span class="badge badge-{{ ticket.priorite|lower }}">
+                        {{ ticket.priorite }}
+                    </span>
+                    <span class="badge">
+                        {{ ticket.statut }}
+                    </span>
+                </div>
+                
+                <!-- Boutons d'action -->
+                <div style="margin-top: 15px; display: flex; gap: 10px;">
+                    {% if session.get('is_admin') or ticket.user_id == session['user_id'] %}
+                        <a href="{{ url_for('modifier_ticket', ticket_id=ticket.id) }}" 
+                           class="button button-primary" style="padding: 8px 12px;">
+                            Modifier
+                        </a>
+                    {% endif %}
+                    
+                    {% if session.get('is_admin') %}
+                        <form action="{{ url_for('supprimer_ticket', ticket_id=ticket.id) }}" method="POST" style="margin: 0;">
+                            <button type="submit" class="button button-danger" style="padding: 8px 12px;">
+                                Supprimer
+                            </button>
+                        </form>
+                        
+                        {% if ticket.statut != 'Résolu' %}
+                        <form action="{{ url_for('resoudre_ticket', ticket_id=ticket.id) }}" method="POST" style="margin: 0;">
+                            <button type="submit" class="button button-success" style="padding: 8px 12px;">
+                                Résoudre
+                            </button>
+                        </form>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

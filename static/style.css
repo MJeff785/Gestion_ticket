@@ -1,0 +1,212 @@
+:root {
+    --primary: #4a90e2;
+    --primary-hover: #3a7bc8;
+    --success: #2ecc71;
+    --danger: #e74c3c;
+    --warning: #f1c40f;
+    --dark: #34495e;
+    --light: #f5f6fa;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #ecf0f1;
+}
+
+/* Base styles */
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--light);
+    color: var(--text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Layout */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;  /* Ajouté pour les liens */
+    font-size: 14px;
+}
+
+.button-primary {
+    background-color: var(--primary);
+    color: white !important;  /* Important pour les liens */
+}
+
+.button-primary:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 4px 8px rgba(74, 144, 226, 0.2);
+    transform: translateY(-1px);
+}
+
+.button-success {
+    background-color: var(--success);
+    color: white !important;
+}
+
+.button-success:hover {
+    background-color: #27ae60;
+    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.2);
+    transform: translateY(-1px);
+}
+
+.button-danger {
+    background-color: var(--danger);
+    color: white !important;
+}
+
+.button-danger:hover {
+    background-color: #c0392b;
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.2);
+    transform: translateY(-1px);
+}
+
+.button-warning {
+    background-color: var(--warning);
+    color: white !important;
+}
+
+.button-warning:hover {
+    background-color: #f39c12;
+    box-shadow: 0 4px 8px rgba(241, 196, 15, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Ajout des styles pour les boutons compacts */
+.button-sm {
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+/* Style pour groupe de boutons */
+.button-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.button-dark {
+    background-color: var(--dark);
+    color: white;
+}
+
+/* Forms */
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    outline: none;
+}
+
+/* Alerts */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.alert-success {
+    background-color: var(--success);
+}
+
+.alert-error {
+    background-color: var(--danger);
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.badge-high {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.badge-medium {
+    background-color: #fff8e1;
+    color: #e65100;
+}
+
+.badge-low {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}

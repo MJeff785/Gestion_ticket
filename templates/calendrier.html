@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Calendrier des Tickets{% endblock %}
+
+{% block content %}
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.js'></script>
+    <style>
+        #calendar {
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Calendrier des Tickets</h1>
+        <a href="{{ url_for('index') }}" class="button">Retour</a>
+    </div>
+
+    <div id="calendar"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                locale: 'fr',
+                events: {{ events|tojson|safe }},
+                eventClick: function(info) {
+                    window.location.href = '/modifier_ticket/' + info.event.id;
+                },
+                eventDidMount: function(info) {
+                    info.el.title = `Priorité: ${info.event.extendedProps.priority}\nStatut: ${info.event.extendedProps.status}\n${info.event.extendedProps.description}`;
+                }
+            });
+            calendar.render();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card" style="max-width: 600px; margin: 30px auto;">
+        <h1 style="margin-bottom: 20px;">Modifier le Ticket</h1>
+        
+        <form method="POST">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Titre</label>
+                <input type="text" name="titre" value="{{ ticket.titre }}" required>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Description</label>
+                <textarea name="description" required rows="5" style="width: 100%;">{{ ticket.description }}</textarea>
+            </div>
+            
+            {% if session.get('is_admin') %}
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Priorité</label>
+                <select name="priorite" style="width: 100%;">
+                    <option value="Haute" {% if ticket.priorite == 'Haute' %}selected{% endif %}>Haute</option>
+                    <option value="Moyenne" {% if ticket.priorite == 'Moyenne' %}selected{% endif %}>Moyenne</option>
+                    <option value="Basse" {% if ticket.priorite == 'Basse' %}selected{% endif %}>Basse</option>
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Statut</label>
+                <select name="statut" style="width: 100%;">
+                    <option value="à venir" {% if ticket.statut == 'à venir' %}selected{% endif %}>À venir</option>
+                    <option value="En cours" {% if ticket.statut == 'En cours' %}selected{% endif %}>En cours</option>
+                    <option value="Fait" {% if ticket.statut == 'Fait' %}selected{% endif %}>Fait</option>
+                </select>
+            </div>
+            {% endif %}
+            
+            <button type="submit" class="button button-primary">
+                Enregistrer
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

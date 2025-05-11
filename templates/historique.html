@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Historique des Tickets Résolus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>Historique des Tickets Résolus</h1>
+        <a href="{{ url_for('index') }}" class="button">Retour</a>
+    </div>
+
+    <div class="tickets-list">
+        {% for ticket in tickets %}
+        <div class="ticket">
+            <h2>{{ ticket.titre }}</h2>
+            <p>{{ ticket.description }}</p>
+            <p>Priorité: {{ ticket.priorite }}</p>
+            <p>Créé le: {{ ticket.date_creation.strftime('%Y-%m-%d %H:%M') }}</p>
+            <p>Résolu le: {{ ticket.date_resolution.strftime('%Y-%m-%d %H:%M') }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

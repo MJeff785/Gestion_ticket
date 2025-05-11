@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestion des Tickets{% endblock %}</title>
+    <!-- Supprimez cette ligne -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="header">
+        <div class="button-group">
+            {% if session.get('user_id') %}
+            <a href="{{ url_for('index') }}" class="button button-primary">Tickets</a>
+            <a href="{{ url_for('calendrier') }}" class="button button-primary">Calendrier</a>
+            {% if session.get('is_admin') %}
+            <a href="{{ url_for('historique') }}" class="button button-primary">Historique</a>
+            {% endif %}
+            {% endif %}
+        </div>
+        <div class="button-group">
+            {% if session.get('user_id') %}
+            <a href="{{ url_for('ajouter_ticket') }}" class="button button-success">Nouveau Ticket</a>
+            <a href="{{ url_for('logout') }}" class="button button-danger">Déconnexion</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="button button-primary">Connexion</a>
+            <a href="{{ url_for('register') }}" class="button button-primary">Inscription</a>
+            {% endif %}
+        </div>
+    </nav>
+    
+    {% block content %}{% endblock %}
+</body>
+</html>
