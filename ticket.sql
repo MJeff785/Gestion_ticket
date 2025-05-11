@@ -1,9 +1,8 @@
--- Create database if not exists
+
 CREATE DATABASE IF NOT EXISTS ticket;
 USE ticket;
 
--- Create users table
--- Modify users table to include email
+
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(80) UNIQUE NOT NULL,
@@ -12,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
     is_admin BOOLEAN DEFAULT FALSE
 );
 
--- Create resolved_tickets table for history
+
 CREATE TABLE IF NOT EXISTS resolved_tickets (
     id INT AUTO_INCREMENT PRIMARY KEY,
     original_ticket_id INT NOT NULL,
@@ -27,7 +26,7 @@ CREATE TABLE IF NOT EXISTS resolved_tickets (
     FOREIGN KEY (resolved_by) REFERENCES users(id)
 );
 
--- Create tickets table
+
 CREATE TABLE IF NOT EXISTS tickets (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titre VARCHAR(100) NOT NULL,
