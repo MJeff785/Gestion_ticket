@@ -5,6 +5,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from flask_mail import Message
 from connection import mail
+from os import environ
+from dotenv import load_dotenv
 
 def determiner_priorite(description):
     # Mots-clés pour chaque niveau de priorité
@@ -34,13 +36,15 @@ app.config['SQLALCHEMY_POOL_SIZE'] = 30
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'votre_clé_secrète_ici'
 
+load_dotenv()
+
 # Add Flask-Mail configuration
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'maizeroi.gerson@gmail.com'  # Replace with your email
-app.config['MAIL_PASSWORD'] = 'lruk kial hpic ulfc'     # Replace with your app password
-app.config['MAIL_DEFAULT_SENDER'] = 'maizeroi.gerson@gmail.com'
+app.config['MAIL_USERNAME'] = environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = environ.get('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = environ.get('MAIL_DEFAULT_SENDER')
 
 db = SQLAlchemy(app)
 mail.init_app(app)  # Initialize Flask-Mail with your app
