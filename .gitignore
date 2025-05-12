@@ -4,3 +4,6 @@ package.json
 package-lock.json
 ticket.sql
 node_modules/
+.env
+clé
+clé.pub
